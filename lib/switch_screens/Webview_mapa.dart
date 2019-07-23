@@ -21,8 +21,10 @@ class Mapa_San_Carlos extends StatefulWidget {
 }
 
 class _Mapa_San_CarlosState extends State<Mapa_San_Carlos> {
+ /*
   Completer<WebViewController> _controller = Completer<WebViewController>();
   final Set<String> _favorites = Set<String>();
+*/
 
   @override
   Widget build(BuildContext context) {
