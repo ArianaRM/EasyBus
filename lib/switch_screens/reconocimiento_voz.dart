@@ -108,6 +108,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                             (result) => setState(() {
                           _isListening = result;
                           resultText = "";
+                          if(resultText.contains('campus')){
+                            return (){Navigator.of(context).pushNamed("/San_Carlos");};
+                          }
                         }),
                       );
                   },
@@ -161,13 +164,20 @@ class _VoiceHomeState extends State<VoiceHome> {
               child: Text(
                 resultText,
                 style: TextStyle(fontSize: 24.0, color: letter_color),
+
+
               ),
             )
           ],
         ),
       ),
     );
-  }
+
+
+
+
+
+
 }
 
 
@@ -176,17 +186,13 @@ requestPermission() async {
   print(res);
 }
 
-/*
-if (“campus“ in resultText and “tecnológico“ in resultText and “local“ in resultText and “san“ in resultText and “carlos“ in resultRext)
-    (){Navigator.of(context).pushNamed("/san_carlos")
 
-words = {
-[What]
-[is]
-[my]
-[Account]
-[Balance]
-};
+
+
+
+/*
+
+
 
 switch (voiceToRoute) {
 case “Account”:
@@ -204,5 +210,11 @@ new MaterialPageRoute(
 builder: (context) => new BalancePage()));
 },
 break;
-}
+
+static Route <dynamic> generateRoute (RouteSettings settings)(
+switch (settings.name) (
+case
+)
+)
 */
+}
