@@ -109,8 +109,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                           _isListening = result;
                           resultText = "";
                           if(resultText.contains('campus')){
-                            return (){Navigator.of(context).pushNamed("/San_Carlos");};
-                          }
+                            Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos()));
+                            }
+
                         }),
                       );
                   },
@@ -216,5 +217,11 @@ switch (settings.name) (
 case
 )
 )
+
+
+if(resultText.contains('campus')){
+                            return Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos())
+                            (){Navigator.of(context).pushNamed("/San_Carlos");};
+                          }
 */
 }

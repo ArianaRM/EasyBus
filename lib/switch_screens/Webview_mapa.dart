@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
 import 'switch.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 
 //import 'package:location/location.dart';
 
@@ -35,7 +36,7 @@ class _Mapa_San_CarlosState extends State<Mapa_San_Carlos> {
       ),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
       body: WebView(
-        initialUrl: 'https://168.228.50.28/easybus/',
+        initialUrl: 'https://leoviquez.synology.me/easybus/',
         javascriptMode: JavascriptMode.unrestricted,
 
       ),
@@ -43,7 +44,13 @@ class _Mapa_San_CarlosState extends State<Mapa_San_Carlos> {
   }
   }
 
+webView.setWebChromeClient(new WebChromeClient() {
+  public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+    callback.invoke(origin, true, false);
+  }
+});
 
+webView.getSettings().setGeolocationDatabasePath( context.getFilesDir().getPath() );
 //_getLocation() async {
   //var location = new Location();
   //try {
