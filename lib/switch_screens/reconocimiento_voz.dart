@@ -39,10 +39,6 @@ class _VoiceHomeState extends State<VoiceHome> {
   void initSpeechRecognizer() {
     _speechRecognition = SpeechRecognition();
 
-    if(resultText.contains('campus')){
-      Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos()));
-    }
-
 
     _speechRecognition.setAvailabilityHandler(
           (bool result) => setState(() => _isAvailable = result),
@@ -55,7 +51,9 @@ class _VoiceHomeState extends State<VoiceHome> {
     _speechRecognition.setRecognitionResultHandler(
           (String speech) => setState(() => resultText = speech),
 
+
     );
+
 
 
     _speechRecognition.setRecognitionCompleteHandler(
@@ -158,6 +156,7 @@ class _VoiceHomeState extends State<VoiceHome> {
 
 
               ),
+
             )
           ],
         ),
@@ -166,7 +165,7 @@ class _VoiceHomeState extends State<VoiceHome> {
 
 
 
-
+  }
 
 
 }

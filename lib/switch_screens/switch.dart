@@ -3,7 +3,7 @@ import 'Webview_mapa.dart';
 import 'reconocimiento_voz.dart';
 
 
-void main() {
+Future main() async {
   runApp(MaterialApp(
     home: new pantalla_inicio(),
     routes:<String, WidgetBuilder>{
