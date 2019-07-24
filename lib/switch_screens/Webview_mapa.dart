@@ -44,38 +44,46 @@ class _Mapa_San_CarlosState extends State<Mapa_San_Carlos> {
   }
   }
 
+
+  /*
 webView.setWebChromeClient(new WebChromeClient() {
   public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
     callback.invoke(origin, true, false);
   }
 });
 
-webView.getSettings().setGeolocationDatabasePath( context.getFilesDir().getPath() );
-//_getLocation() async {
-  //var location = new Location();
-  //try {
-    //currentLocation = await location.getLocation();
-
-    //print("locationLatitude: ${currentLocation["latitude"]}");
-    //print("locationLongitude: ${currentLocation["longitude"]}");
-    //setState(
-    //        () {}); //rebuild the widget after getting the current location of the user
-  //} on Exception {
-    //currentLocation = null;
-  //}
-//}
+webView.getSettings().setGeolocationDatabasePath(context.getFilesDir().getPath() )
 
 
 
-//@override
-//void initState() {
-  //_getLocation();
-  //super.initState();
-//}
 
-//var location = new Location();
+_getLocation() async {
+  var location = new Location();
+  try {
+    currentLocation = await location.getLocation();
 
-//location.onLocationChanged().listen((LocationData currentLocation) {
-//print(currentLocation.latitude);
-//print(currentLocation.longitude);
-//});
+    print("locationLatitude: ${currentLocation["latitude"]}");
+    print("locationLongitude: ${currentLocation["longitude"]}");
+    setState(
+            () {}); //rebuild the widget after getting the current location of the user
+ } on Exception {
+    currentLocation = null;
+  }
+}
+
+
+
+@override
+void initState() {
+  _getLocation();
+ super.initState();
+}
+
+var location = new Location();
+
+location.onLocationChanged().listen((LocationData currentLocation) {
+print(currentLocation.latitude);
+print(currentLocation.longitude);
+});
+
+*/

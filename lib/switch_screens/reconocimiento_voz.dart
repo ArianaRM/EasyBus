@@ -2,29 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'switch.dart';
 import 'package:permission/permission.dart';
-/*
-import 'package:simple_permissions/simple_permissions.dart';
-import 'package:audio_recorder/audio_recorder.dart';
-*/
 
 
-/*
-initState() {
-  super.initState();
-  _checkAudioPermission();
-  activateSpeechRecognizer();
-}
-
-
-void _checkAudioPermission() async {
-  bool hasPermission =
-  await SimplePermissions.checkPermission(Permission.RecordAudio);
-  if (!hasPermission) {
-    await SimplePermissions.requestPermission(Permission.RecordAudio);
-  }
-}
-
-*/
 
 
 
@@ -70,7 +49,10 @@ class _VoiceHomeState extends State<VoiceHome> {
 
     _speechRecognition.setRecognitionResultHandler(
           (String speech) => setState(() => resultText = speech),
+
     );
+
+
 
     _speechRecognition.setRecognitionCompleteHandler(
           () => setState(() => _isListening = false),
@@ -99,7 +81,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                   child:
                   FloatingActionButton(
                   child:
-                  Icon(Icons.cancel, color: button_color, size: 20.0),
+                  Icon(Icons.cancel, color: button_color, size: 50.0),
                   mini: true,
                   backgroundColor: icon_color,
                   onPressed: () {
@@ -108,9 +90,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                             (result) => setState(() {
                           _isListening = result;
                           resultText = "";
-                          if(resultText.contains('campus')){
-                            Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos()));
-                            }
+
+
+
 
                         }),
                       );
@@ -123,12 +105,16 @@ class _VoiceHomeState extends State<VoiceHome> {
                   child:
                 FloatingActionButton(
                   child:
-                  Icon(Icons.mic, color: button_color, size: 20.0),
+                  Icon(Icons.mic, color: button_color, size: 50.0),
                   onPressed: () {
                     if (_isAvailable && !_isListening)
                       _speechRecognition
                           .listen(locale: "es_ES")
                           .then((result) => print('$result'));
+
+
+
+
                   },
                   backgroundColor: icon_color,
                 ),
@@ -139,7 +125,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                   height: 80.0,
                   child:
                 FloatingActionButton(
-                  child: Icon(Icons.stop, color: button_color, size: 20.0),
+                  child: Icon(Icons.stop, color: button_color, size: 50.0),
                   mini: true,
                   backgroundColor: icon_color,
                   onPressed: () {
