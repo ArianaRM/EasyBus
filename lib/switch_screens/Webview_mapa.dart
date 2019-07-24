@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'switch.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 
 
 //import 'package:location/location.dart';
@@ -36,7 +37,7 @@ class _Mapa_San_CarlosState extends State<Mapa_San_Carlos> {
       ),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
       body: WebView(
-        initialUrl: 'https://leoviquez.synology.me/easybus/',
+        initialUrl: 'https://leoviquez.com/easybus/',
         javascriptMode: JavascriptMode.unrestricted,
 
       ),
@@ -45,45 +46,5 @@ class _Mapa_San_CarlosState extends State<Mapa_San_Carlos> {
   }
 
 
-  /*
-webView.setWebChromeClient(new WebChromeClient() {
-  public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-    callback.invoke(origin, true, false);
-  }
-});
-
-webView.getSettings().setGeolocationDatabasePath(context.getFilesDir().getPath() )
 
 
-
-
-_getLocation() async {
-  var location = new Location();
-  try {
-    currentLocation = await location.getLocation();
-
-    print("locationLatitude: ${currentLocation["latitude"]}");
-    print("locationLongitude: ${currentLocation["longitude"]}");
-    setState(
-            () {}); //rebuild the widget after getting the current location of the user
- } on Exception {
-    currentLocation = null;
-  }
-}
-
-
-
-@override
-void initState() {
-  _getLocation();
- super.initState();
-}
-
-var location = new Location();
-
-location.onLocationChanged().listen((LocationData currentLocation) {
-print(currentLocation.latitude);
-print(currentLocation.longitude);
-});
-
-*/

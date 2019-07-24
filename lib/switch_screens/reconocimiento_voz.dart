@@ -39,6 +39,11 @@ class _VoiceHomeState extends State<VoiceHome> {
   void initSpeechRecognizer() {
     _speechRecognition = SpeechRecognition();
 
+    if(resultText.contains('campus')){
+      Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos()));
+    }
+
+
     _speechRecognition.setAvailabilityHandler(
           (bool result) => setState(() => _isAvailable = result),
     );
@@ -51,7 +56,6 @@ class _VoiceHomeState extends State<VoiceHome> {
           (String speech) => setState(() => resultText = speech),
 
     );
-
 
 
     _speechRecognition.setRecognitionCompleteHandler(
@@ -176,38 +180,3 @@ requestPermission() async {
 
 
 
-
-/*
-
-
-
-switch (voiceToRoute) {
-case “Account”:
-Navigator.push(
-context,
-new MaterialPageRoute(
-builder: (context) => new AccountPage()));
-},
-break;
-
-case “Balance”:
-Navigator.push(
-context,
-new MaterialPageRoute(
-builder: (context) => new BalancePage()));
-},
-break;
-
-static Route <dynamic> generateRoute (RouteSettings settings)(
-switch (settings.name) (
-case
-)
-)
-
-
-if(resultText.contains('campus')){
-                            return Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos())
-                            (){Navigator.of(context).pushNamed("/San_Carlos");};
-                          }
-*/
-}
