@@ -29,6 +29,7 @@ dependencies:
   speech_recognition: ^0.3.0+1
   permission: ^0.1.2
   shared_preferences: ^0.4.0
+  geolocator: ^5.1.1+1
 
 
 dev_dependencies:
