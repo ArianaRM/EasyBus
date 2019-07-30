@@ -2,30 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'switch.dart';
 import 'package:permission/permission.dart';
-/*
-import 'package:simple_permissions/simple_permissions.dart';
-import 'package:audio_recorder/audio_recorder.dart';
-*/
-
-
-/*
-initState() {
-  super.initState();
-  _checkAudioPermission();
-  activateSpeechRecognizer();
-}
-
-
-void _checkAudioPermission() async {
-  bool hasPermission =
-  await SimplePermissions.checkPermission(Permission.RecordAudio);
-  if (!hasPermission) {
-    await SimplePermissions.requestPermission(Permission.RecordAudio);
-  }
-}
-
-*/
-
 
 
 void main() => runApp(MyApp());
@@ -59,6 +35,17 @@ class _VoiceHomeState extends State<VoiceHome> {
 
   void initSpeechRecognizer() {
     _speechRecognition = SpeechRecognition();
+
+    print(resultText.contains("campus"));
+    if(resultText.contains("campus")==true)
+    {
+      print("funciona");
+      Navigator.push(context,
+      new MaterialPageRoute(builder: (context)=> new San_Carlos())
+      );
+    }
+
+
 
     _speechRecognition.setAvailabilityHandler(
           (bool result) => setState(() => _isAvailable = result),
@@ -190,38 +177,3 @@ requestPermission() async {
 
 
 
-
-/*
-
-
-
-switch (voiceToRoute) {
-case “Account”:
-Navigator.push(
-context,
-new MaterialPageRoute(
-builder: (context) => new AccountPage()));
-},
-break;
-
-case “Balance”:
-Navigator.push(
-context,
-new MaterialPageRoute(
-builder: (context) => new BalancePage()));
-},
-break;
-
-static Route <dynamic> generateRoute (RouteSettings settings)(
-switch (settings.name) (
-case
-)
-)
-
-
-if(resultText.contains('campus')){
-                            return Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos())
-                            (){Navigator.of(context).pushNamed("/San_Carlos");};
-                          }
-*/
-}

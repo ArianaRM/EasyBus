@@ -44,6 +44,10 @@ class _Mapa_San_CarlosState extends State<Mapa_San_Carlos> {
   }
   }
 
+
+
+
+  /*
 webView.setWebChromeClient(new WebChromeClient() {
   public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
     callback.invoke(origin, true, false);
@@ -56,6 +60,7 @@ webView.getSettings().setGeolocationDatabasePath( context.getFilesDir().getPath(
   //try {
     //currentLocation = await location.getLocation();
 
+*/
     //print("locationLatitude: ${currentLocation["latitude"]}");
     //print("locationLongitude: ${currentLocation["longitude"]}");
     //setState(
