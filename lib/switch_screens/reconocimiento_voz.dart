@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'switch.dart';
 import 'package:permission/permission.dart';
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> master
 
 
 void main() => runApp(MyApp());
@@ -42,7 +36,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   void initSpeechRecognizer() {
     _speechRecognition = SpeechRecognition();
 
-<<<<<<< HEAD
+
     print(resultText.contains("campus"));
     if(resultText.contains("campus")==true)
     {
@@ -53,8 +47,6 @@ class _VoiceHomeState extends State<VoiceHome> {
     }
 
 
-=======
->>>>>>> master
 
     _speechRecognition.setAvailabilityHandler(
           (bool result) => setState(() => _isAvailable = result),

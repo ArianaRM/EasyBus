@@ -45,36 +45,3 @@ class _Mapa_San_CarlosState extends State<Mapa_San_Carlos> {
   }
   }
 
-<<<<<<< HEAD
-
-
-
-  /*
-webView.setWebChromeClient(new WebChromeClient() {
-  public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-    callback.invoke(origin, true, false);
-  }
-});
-
-webView.getSettings().setGeolocationDatabasePath( context.getFilesDir().getPath() );
-//_getLocation() async {
-  //var location = new Location();
-  //try {
-    //currentLocation = await location.getLocation();
-
-*/
-    //print("locationLatitude: ${currentLocation["latitude"]}");
-    //print("locationLongitude: ${currentLocation["longitude"]}");
-    //setState(
-    //        () {}); //rebuild the widget after getting the current location of the user
-  //} on Exception {
-    //currentLocation = null;
-  //}
-//}
-
-
-=======
->>>>>>> master
-
-
-
