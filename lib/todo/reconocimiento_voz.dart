@@ -37,14 +37,6 @@ class _VoiceHomeState extends State<VoiceHome> {
     _speechRecognition = SpeechRecognition();
 
 
-    print(resultText.contains("campus"));
-    if(resultText.contains("campus")==true)
-    {
-      print("funciona");
-      Navigator.push(context,
-      new MaterialPageRoute(builder: (context)=> new San_Carlos())
-      );
-    }
 
 
 
@@ -62,16 +54,17 @@ class _VoiceHomeState extends State<VoiceHome> {
 
     );
 
-
-
     _speechRecognition.setRecognitionCompleteHandler(
           () => setState(() => _isListening = false),
+
     );
+
 
     _speechRecognition.activate().then(
           (result) => setState(() => _isAvailable = result),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,11 +93,12 @@ class _VoiceHomeState extends State<VoiceHome> {
                             (result) => setState(() {
                           _isListening = result;
                           resultText = "";
+                          print(resultText="");
 
 
 
 
-                        }),
+                            }),
                       );
                   },
                   )
@@ -166,6 +160,7 @@ class _VoiceHomeState extends State<VoiceHome> {
               ),
 
             )
+
           ],
         ),
       ),
@@ -179,6 +174,7 @@ class _VoiceHomeState extends State<VoiceHome> {
 }
 
 
+
 requestPermission() async {
   final res = await Permission.requestSinglePermission(PermissionName.Microphone);
   print(res);
@@ -187,3 +183,12 @@ requestPermission() async {
 
 
 
+/*
+ if(resultText.contains("campus"))
+    {
+      print("funciona");
+      Navigator.push(context,
+          new MaterialPageRoute(builder: (context)=> new San_Carlos())
+      );
+    }
+ */

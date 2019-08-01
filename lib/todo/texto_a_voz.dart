@@ -66,10 +66,19 @@ class _MyAppState extends State<MyApp> {
 
   Future _getLanguages() async {
     languages = await flutterTts.getLanguages;
+    await flutterTts.setLanguage("es-ES");
+
+    await flutterTts.setSpeechRate(1.0);
+
+    await flutterTts.setVolume(1.0);
+
+    await flutterTts.setPitch(1.0);
+
+    await flutterTts.isLanguageAvailable("es-ES");
     if (languages != null) setState(() => languages);
   }
 
-  Future _getVoices() async {
+    Future _getVoices() async {
     voices = await flutterTts.getVoices;
     if (voices != null) setState(() => voices);
   }
