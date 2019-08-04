@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   initTts() {
-    flutterTts = FlutterTts();
+    flutterTts =new FlutterTts();
 
     if (Platform.isAndroid) {
       flutterTts.ttsInitHandler(() {
@@ -112,7 +112,7 @@ class _MyAppState extends State<MyApp> {
 
   void changedLanguageDropDownItem(String selectedType) {
     setState(() {
-      language = selectedType;
+      language = "es-ES";
       flutterTts.setLanguage(language);
     });
   }
