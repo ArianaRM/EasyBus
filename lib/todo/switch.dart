@@ -140,7 +140,7 @@ class TEC_CQ extends StatelessWidget {
               new IconButton(
                 icon: new Icon(Icons.departure_board, color: icon_color),
                 iconSize: 70.0,
-                onPressed: (){Navigator.of(context).pushNamed("/Horario_TEC_CQ");}
+                onPressed: (){;}
                 ),
               new Text("Horarios",
                 style: TextStyle(fontSize: 40.0,

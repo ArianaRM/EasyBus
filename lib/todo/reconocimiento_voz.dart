@@ -49,47 +49,40 @@ class _VoiceHomeState extends State<VoiceHome> {
           setState(() => resultText = speech),
 
 
-            if(speech.contains("campus")){
+            if(speech.contains("campus" || "elección")){
                 print("funciona"),
                 Navigator.push(context,
                 new MaterialPageRoute(builder: (context)=> new San_Carlos()))
             }
 
-            else if(speech.contains("campus"))
-                print("funciona"),
-                Navigator.push(context,
-                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
-                )
-            // else
+            else if(speech.contains("horario san carlos")){
+          print("funciona"),
+          Navigator.push(context,
+          new MaterialPageRoute(builder: (context) => new San_Carlos()))
           }
 
-    /*        else if(speech.contains("campus"))
-              {
-                print("funciona"),
-                Navigator.push(context,
-                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
-                )
-              },
+            else if(speech.contains("campus")){
+          print("funciona"),
+          Navigator.push(context,
+          new MaterialPageRoute(builder: (context) => new San_Carlos()))
+          }
 
-            else if(speech.contains("campus"))
-              {
-                print("funciona"),
-                Navigator.push(context,
-                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
-                )
-              },
-              else if(speech.contains("campus"))
-              {
-              print("funciona"),
-              Navigator.push(context,
-              new MaterialPageRoute(builder: (context)=> new San_Carlos())
-              )
-              },
-    */
+            else if(speech.contains("campus")){
+                  print("funciona"),
+                  Navigator.push(context,
+                      new MaterialPageRoute(
+                          builder: (context) => new San_Carlos()))
+                }
 
-
-
+              else if(speech.contains("campus")){
+                    print("funciona"),
+                    Navigator.push(context,
+                        new MaterialPageRoute(
+                            builder: (context) => new San_Carlos()))
+                  }
+              }
     );
+
 
     _speechRecognition.setRecognitionCompleteHandler(
           () => setState(() => _isListening = false),
