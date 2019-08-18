@@ -45,21 +45,23 @@ class _VoiceHomeState extends State<VoiceHome> {
     );
 
     _speechRecognition.setRecognitionResultHandler(
-          (String speech) =>
+          (String speech) => {
           setState(() => resultText = speech),
 
 
-            if(speech.contains("campus")),
+            if(speech.contains("campus")){
                 print("funciona"),
                 Navigator.push(context,
-                new MaterialPageRoute(builder: (context)=> new San_Carlos())
-                );
+                new MaterialPageRoute(builder: (context)=> new San_Carlos()))
+            }
 
             else if(speech.contains("campus"))
                 print("funciona"),
                 Navigator.push(context,
                     new MaterialPageRoute(builder: (context)=> new San_Carlos())
                 )
+            // else
+          }
 
     /*        else if(speech.contains("campus"))
               {
