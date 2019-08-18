@@ -35,11 +35,7 @@ class _VoiceHomeState extends State<VoiceHome> {
 
   void initSpeechRecognizer() {
     _speechRecognition = SpeechRecognition();
-
-
-
-
-
+    
     _speechRecognition.setAvailabilityHandler(
           (bool result) => setState(() => _isAvailable = result),
     );
@@ -49,7 +45,46 @@ class _VoiceHomeState extends State<VoiceHome> {
     );
 
     _speechRecognition.setRecognitionResultHandler(
-          (String speech) => setState(() => resultText = speech),
+          (String speech) =>
+          setState(() => resultText = speech),
+
+
+            if(speech.contains("campus")),
+                print("funciona"),
+                Navigator.push(context,
+                new MaterialPageRoute(builder: (context)=> new San_Carlos())
+                );
+
+            else if(speech.contains("campus"))
+                print("funciona"),
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
+                )
+
+    /*        else if(speech.contains("campus"))
+              {
+                print("funciona"),
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
+                )
+              },
+
+            else if(speech.contains("campus"))
+              {
+                print("funciona"),
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
+                )
+              },
+              else if(speech.contains("campus"))
+              {
+              print("funciona"),
+              Navigator.push(context,
+              new MaterialPageRoute(builder: (context)=> new San_Carlos())
+              )
+              },
+    */
+
 
 
     );
