@@ -51,47 +51,88 @@ class _VoiceHomeState extends State<VoiceHome> {
           setState(() => resultText = speech),
 
 
-            if(speech.contains("campus")){
-                print("funciona"),
+            if(speech.contains("elija") ||
+                speech.contains("elección")||
+                speech.contains("elegir")||
+                speech.contains("campus")||
+                speech.contains("sede")){
                 Navigator.push(context,
-                new MaterialPageRoute(builder: (context)=> new San_Carlos()))
+                    new MaterialPageRoute(builder: (context)=> new pantalla_inicio()))
             }
 
-            else if(speech.contains("campus"))
-                print("funciona"),
+            else if(
+                    speech.contains("campus") ||
+                    speech.contains("tecnológico")||
+                        speech.contains("tec")||
+                        speech.contains("Tec")||
+                    speech.contains("local")||
+                    speech.contains("san carlos")||
+                    speech.contains("punto de partida")){
                 Navigator.push(context,
-                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
-                )
-            // else
-          }
+                    new MaterialPageRoute(builder: (context) => new San_Carlos()))
+                }
 
-    /*        else if(speech.contains("campus"))
-              {
-                print("funciona"),
+            else if(
+                    speech.contains("Tec") ||
+                    speech.contains("Tecnológico")||
+                    speech.contains("sede")||
+                    speech.contains("campus")&&
+                    speech.contains("a ciudad Quesada")){
                 Navigator.push(context,
-                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
-                )
-              },
+                    new MaterialPageRoute(builder: (context) => new TEC_CQ()))
+                }
 
-            else if(speech.contains("campus"))
+            else if(
+                    speech.contains("iudad") ||
+                    speech.contains("Quesada")&&
+                    speech.contains("a Tec")){
+                  Navigator.push(context,
+                      new MaterialPageRoute(
+                          builder: (context) => new CQ_TEC()))
+                }
+
+              else if(
+                    speech.contains("orario") &&
+                    (
+                    speech.contains("Tec")||
+                    speech.contains("Tecnológico")||
+                    speech.contains("a iudad Quesada"))){
+
+                  Navigator.push(context,
+                      new MaterialPageRoute(
+                          builder: (context) => new Horario_TEC_CQ()))
+                  }
+
+              else if(
+                    speech.contains("orario") &&
+                        (
+                    speech.contains("iudad Quesada")||
+                    speech.contains("a TEC")||
+                    speech.contains("a Tecnológico")
+                    ))
               {
-                print("funciona"),
                 Navigator.push(context,
-                    new MaterialPageRoute(builder: (context)=> new San_Carlos())
-                )
-              },
-              else if(speech.contains("campus"))
-              {
-              print("funciona"),
-              Navigator.push(context,
-              new MaterialPageRoute(builder: (context)=> new San_Carlos())
-              )
-              },
-    */
+                    new MaterialPageRoute(
+                        builder: (context) => new Horario_TEC_CQ()))
+                      }
+            /*
+              else if(
+                      speech.contains("Horario") &&
+                          (
+                              speech.contains("Ciudad Quesada")||
+                              speech.contains("a TEC")||
+                              speech.contains("a Tecnológico")
+                          )){
+                Navigator.push(context,
+                    new MaterialPageRoute(
+                        builder: (context) => new Mapa_San_Carlos()))
+              }
+              */
 
-
+              }
 
     );
+
 
     _speechRecognition.setRecognitionCompleteHandler(
           () => setState(() => _isListening = false),

@@ -2,18 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'switch.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 
-
-//import 'package:location/location.dart';
-
-
-
-void main() => {
-    runApp(MaterialApp(
-      home: Mapa_San_Carlos(),
-))
-};
 
 
 
