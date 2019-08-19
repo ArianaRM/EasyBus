@@ -74,7 +74,6 @@ class _VoiceHomeState extends State<VoiceHome> {
   void initState() {
     super.initState();
     initSpeechRecognizer();
-    //genericContainer = containerInicio;
   }
 
 
@@ -99,7 +98,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                 resultText.contains("elegir")||
                 resultText.contains("campus")||
                 resultText.contains("sede") ){
-                //Navigator.of(context).pushNamed("/sancarlos")
+              setState(() {
+                genericContainer = _getDrawerItemWidget(0);
+              })
             }
 
             else if(
@@ -110,8 +111,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                 resultText.contains("local")||
                 resultText.contains("san carlos")||
                 resultText.contains("punto de partida")){
-                  genericContainer = null,
-                  //genericContainer = containerSanCarlos
+                  setState(() {
+                    genericContainer = _getDrawerItemWidget(1);
+                  })
                 }
 
             else if(
@@ -119,43 +121,44 @@ class _VoiceHomeState extends State<VoiceHome> {
                   resultText.contains("tecnológico")||
                   resultText.contains("sede")||
                   resultText.contains("campus")&&
-                      resultText.contains("a ciudad Quesada")){
-                //Navigator.push(context,
-                    //new MaterialPageRoute(builder: (context) => new TEC_CQ()))
+                  resultText.contains("a ciudad Quesada")){
+                  setState(() {
+                    genericContainer = _getDrawerItemWidget(4);
+                  })
                 }
 
             else if(
                 resultText.contains("iudad") ||
                 resultText.contains("quesada") ||
                 resultText.contains("a tec")){
-                  /*Navigator.push(context,
-                      new MaterialPageRoute(
-                          builder: (context) => new CQ_TEC()))*/
-                  genericContainer = null,
-                  //genericContainer = cq_tecContainer
+                  setState(() {
+                    genericContainer = _getDrawerItemWidget(2);
+                  }),
                 }
 
               else if(
-                    resultText.contains("horario ") &&
+                    resultText.contains("horario") &&
                     (
                     resultText.contains("tec")||
                     resultText.contains("tecnológico")||
                     resultText.contains("a iudad Quesada"))){
 
-                  genericContainer = null,
-                  //genericContainer = horario_tec_cqContainer
+                    setState(() {
+                      genericContainer = _getDrawerItemWidget(5);
+                    }),
               }
 
               else if(
-                    speech.contains("horario ") &&
+                    resultText.contains("horario ") &&
                         (
-                    speech.contains("iudad Quesada")||
-                    speech.contains("a tec")||
-                    speech.contains("a tecnológico")
+                    resultText.contains("iudad Quesada")||
+                    resultText.contains("a tec")||
+                    resultText.contains("a tecnológico")
                     ))
                 {
-                  genericContainer = null,
-                  //genericContainer = horario_cq_tecContainer
+                  setState(() {
+                    genericContainer = _getDrawerItemWidget(3);
+                  }),
                 }
             /*
               else if(
@@ -226,7 +229,7 @@ class _VoiceHomeState extends State<VoiceHome> {
 
   _getDrawerItemWidget(int pos) {
     switch (pos) {
-      case 0:
+      case 0: // inicio
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -249,7 +252,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                     ]
                 )
             )));
-      case 1:
+      case 1: // san carlos
         return ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -290,7 +293,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )
         ));
-      case 2:
+      case 2: // CQ-TEC
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -300,9 +303,10 @@ class _VoiceHomeState extends State<VoiceHome> {
                       new IconButton(
                           icon: new Icon(Icons.map, color: icon_color),
                           iconSize: 70.0,
-                          onPressed: (){
-                            //Navigator.of(context).pushNamed("/Mapa_San_Carlos");
-
+                          onPressed: () {
+                            setState(() {
+                              genericContainer = _getDrawerItemWidget(6);
+                            });
                           }
                       ),
                       new Text("Cómo llegar",
@@ -329,7 +333,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )
         ));
-      case 3:
+      case 3: // horario cq - tec
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -345,7 +349,7 @@ class _VoiceHomeState extends State<VoiceHome> {
               ),
             )
         ));
-      case 4:
+      case 4: // TEC-CQ
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -385,7 +389,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )
         ));
-      case 5:
+      case 5: // horario tec - cq
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -420,7 +424,8 @@ class _VoiceHomeState extends State<VoiceHome> {
               color: Color(0xffffffff)
           ),
           child: WebView(
-            initialUrl: 'https://flutter.io'
+              initialUrl: 'https://leoviquez.com/easybus/',
+              javascriptMode: JavascriptMode.unrestricted
           ),
         ),
         );
