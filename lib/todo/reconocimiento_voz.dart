@@ -24,6 +24,8 @@ class _VoiceHomeState extends State<VoiceHome> {
   SpeechRecognition _speechRecognition;
   bool _isAvailable = false;
   bool _isListening = false;
+  int _cIndex = 0;
+
 
   String resultText = "";
 
@@ -102,6 +104,38 @@ class _VoiceHomeState extends State<VoiceHome> {
     );
   }
 
+  void _incrementTab(index) {
+    print(index);
+    switch (index) {
+      case 0:
+        if (_isListening)
+          _speechRecognition.cancel().then(
+                (result) => setState(() {
+              _isListening = result;
+              resultText = "";
+              print(resultText="");
+            }),
+          );
+        break;
+      case 1:
+        if (_isAvailable && !_isListening)
+          _speechRecognition
+              .listen(locale: "es_ES")
+              .then((result) => print('$result'));
+        break;
+      case 2:
+        if (_isListening)
+        _speechRecognition.stop().then(
+              (result) => setState(() => _isListening = result),
+        );
+
+        break;
+    }
+    setState(() {
+      _cIndex = index;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -112,73 +146,6 @@ class _VoiceHomeState extends State<VoiceHome> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(
-                  width: 80.0,
-                  height: 80.0,
-                  child:
-                  FloatingActionButton(
-                  child:
-                  Icon(Icons.cancel, color: button_color, size: 50.0),
-                  mini: true,
-                  backgroundColor: icon_color,
-                  onPressed: () {
-                    if (_isListening)
-                      _speechRecognition.cancel().then(
-                            (result) => setState(() {
-                          _isListening = result;
-                          resultText = "";
-                          print(resultText="");
-
-
-
-
-                            }),
-                      );
-                  },
-                  )
-                ),
-                SizedBox(
-                  width: 80.0,
-                  height: 80.0,
-                  child:
-                FloatingActionButton(
-                  child:
-                  Icon(Icons.mic, color: button_color, size: 50.0),
-                  onPressed: () {
-                    if (_isAvailable && !_isListening)
-                      _speechRecognition
-                          .listen(locale: "es_ES")
-                          .then((result) => print('$result'));
-
-
-
-
-                  },
-                  backgroundColor: icon_color,
-                ),
-                ),
-
-                SizedBox(
-                  width: 80.0,
-                  height: 80.0,
-                  child:
-                FloatingActionButton(
-                  child: Icon(Icons.stop, color: button_color, size: 50.0),
-                  mini: true,
-                  backgroundColor: icon_color,
-                  onPressed: () {
-                    if (_isListening)
-                      _speechRecognition.stop().then(
-                            (result) => setState(() => _isListening = result),
-                      );
-                  },
-                ),
-                ),
-              ],
-            ),
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
               decoration: BoxDecoration(
@@ -192,14 +159,40 @@ class _VoiceHomeState extends State<VoiceHome> {
               child: Text(
                 resultText,
                 style: TextStyle(fontSize: 24.0, color: letter_color),
-
-
               ),
 
             )
 
           ],
         ),
+      ),
+      bottomNavigationBar:BottomNavigationBar(
+        currentIndex: _cIndex,
+        type: BottomNavigationBarType.fixed ,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.cancel,color: Color.fromARGB(255, 0, 0, 0)),
+              title: new Text('Home')
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.mic,color: Color.fromARGB(255, 0, 0, 0)),
+              title: new Text('Power')
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.stop,color: Color.fromARGB(255, 0, 0, 0)),
+              title: new Text('Power')
+          )
+        ],
+        onTap: (index){
+          _incrementTab(index);
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: new FloatingActionButton(
+
+        onPressed:(){ _incrementTab(1); },
+        tooltip: 'Increment',
+        child: new Icon(Icons.add),
       ),
     );
 
