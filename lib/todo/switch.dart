@@ -3,7 +3,7 @@ import 'webview_mapa.dart';
 import 'reconocimiento_voz.dart';
 
 
-Future main() async {
+/*Future main() async {
   runApp(MaterialApp(
     home: new pantalla_inicio(),
     routes:<String, WidgetBuilder>{
@@ -16,7 +16,7 @@ Future main() async {
 
     }
   ));
-}
+}*/
 
 
 dynamic bar_color = Colors.black;
@@ -28,87 +28,8 @@ dynamic button_color=Colors.black;
 
 
 
-class pantalla_inicio extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(title: new Text("Elija la sede deseada",
-            style: TextStyle (color: letter_color),
-        ), backgroundColor: bar_color
-        ),
-        body: new Container(
-            decoration: new BoxDecoration(color: back_color),
-            child: new Center(
-                child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                    new RaisedButton(
-                        child: new Text("Campus Tecnológico\nLocal San Carlos",
-                            style: TextStyle(fontSize: 30.0,
-                            color: letter_color
-                            )),
-                         color: button_color,
-                         onPressed: (){Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos())
-                         );
-                        }
-                    )
-                  ]
-                )
-            ),
-        )
-    );
-  }
-}
 
 
-
-
-
-
-class San_Carlos extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(title: new Text("Campus Tecnológico\nLocal San Carlos",
-            style: TextStyle (color: letter_color)
-        ), backgroundColor: bar_color,
-        ),
-        body: new Container(
-            decoration: new BoxDecoration(color: back_color),
-            child: new Center(
-                child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new Text("Elija su punto de partida",
-                          style: TextStyle(fontSize: 30.0,
-                          color: letter_color
-                          )
-                      ),
-                      new RaisedButton(
-                        child: new Text("TEC",
-                            style: TextStyle(fontSize: 30.0,
-                            color: letter_color
-                            )),
-                        color: button_color,
-                          onPressed: (){Navigator.of(context).pushNamed("/TEC_CQ");}
-                      ),
-                      new RaisedButton(
-                          child: new Text("Ciudad Quesada",
-                              style: TextStyle(fontSize: 30.0,
-                              color: letter_color
-                              )),
-                          color: button_color,
-                          onPressed: (){Navigator.of(context).pushNamed("/CQ_TEC");}
-                      ),
-
-                    ]
-                )
-            )
-        )
-    );
-  }
-}
 
 
 
@@ -254,41 +175,6 @@ class Horario_TEC_CQ extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-class Horario_CQ_TEC extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(title: new Text("Horario buses\nCiudad Quesada a TEC",
-            style: TextStyle (color: letter_color)
-        ),
-          backgroundColor: bar_color,
-        ),
-        body: new Container(
-            decoration: new BoxDecoration(color: back_color),
-            child: new Center(
-                child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new Text("6:20 a.m.",
-                          style: TextStyle(fontSize: 30.0,
-                          color: letter_color
-                          )
-                      ),
-                    ]
-                ),
-                      )
-        )
-    );
-  }
-}
-
 
 
 
