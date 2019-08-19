@@ -1,5 +1,7 @@
+import 'package:EasyBus/todo/webview_mapa.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_recognition/speech_recognition.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'switch.dart';
 import 'package:permission/permission.dart';
 
@@ -7,6 +9,7 @@ import 'package:permission/permission.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,16 +29,20 @@ class MyApp extends StatelessWidget {
 }
 
 class VoiceHome extends StatefulWidget {
+
   @override
   _VoiceHomeState createState() => _VoiceHomeState();
 }
+
+
 
 class _VoiceHomeState extends State<VoiceHome> {
   SpeechRecognition _speechRecognition;
   bool _isAvailable = false;
   bool _isListening = false;
   int _cIndex = 0;
-  static Container genericContainer;
+
+  ContainerGen genericContainer;
   static Container containerInicio = new Container(
       decoration: new BoxDecoration(color: back_color),
       child: new Center(
@@ -50,179 +57,24 @@ class _VoiceHomeState extends State<VoiceHome> {
                         )),
                     color: button_color,
                     onPressed: (){
-                     // Navigator.of(context).pushNamed("/sancarlos");
+                      /*genericContainer = null;
+                      genericContainer = containerSanCarlos;*/
                     }
                 )
               ]
           )
       ));
-  static Container containerSanCarlos = new Container(
-      decoration: new BoxDecoration(color: back_color),
-      child: new Center(
-          child: new Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                new Text("Elija su punto de partida",
-                    style: TextStyle(fontSize: 30.0,
-                        color: letter_color
-                    )
-                ),
-                new RaisedButton(
-                    child: new Text("TEC",
-                        style: TextStyle(fontSize: 30.0,
-                            color: letter_color
-                        )),
-                    color: button_color,
-                    onPressed: (){
-                      genericContainer = null;
-                      genericContainer = tec_cqContainer;
-                    }
-                ),
-                new RaisedButton(
-                    child: new Text("Ciudad Quesada",
-                        style: TextStyle(fontSize: 30.0,
-                            color: letter_color
-                        )),
-                    color: button_color,
-                    onPressed: (){
-                      genericContainer = null;
-                      genericContainer = cq_tecContainer;
-                      _VoiceHomeState();
-                      //Navigator.of(context).pushNamed("/CQ_TEC");
-                    }
-                ),
-
-              ]
-          )
-      )
-  );
-  static Container cq_tecContainer = new Container(
-      decoration: new BoxDecoration(color: back_color),
-      child: new Center(
-          child: new Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                new IconButton(
-                    icon: new Icon(Icons.map, color: icon_color),
-                    iconSize: 70.0,
-                    onPressed: (){
-                      //Navigator.of(context).pushNamed("/Mapa_San_Carlos");
-                    }
-                ),
-                new Text("Cómo llegar",
-                    style: TextStyle(fontSize: 40.0,
-                        color: letter_color
-                    )
-                ),
-                new IconButton(
-                    icon: new Icon(Icons.departure_board, color: icon_color),
-                    iconSize: 70.0,
-                    onPressed: (){
-                      genericContainer = null;
-                      genericContainer = horario_cq_tecContainer;
-
-                    }
-                ),
-                new Text("Horarios",
-                    style: TextStyle(fontSize: 40.0,
-                        color: letter_color
-                    )
-                )
-
-              ]
-          )
-      )
-  );
-  static Container horario_cq_tecContainer = new Container(
-      decoration: new BoxDecoration(color: back_color),
-      child: new Center(
-        child: new Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              new Text("6:20 a.m.",
-                  style: TextStyle(fontSize: 30.0,
-                      color: letter_color
-                  )
-              ),
-            ]
-        ),
-      )
-  );
-  static Container horario_tec_cqContainer = new Container(
-      decoration: new BoxDecoration(color: back_color),
-      child: new Center(
-          child: new Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                new Text("12:00 p.m.",
-                    style: TextStyle(fontSize: 30.0,
-                        color: letter_color
-                    )
-                ),
-                new Text("4:15 p.m.",
-                    style: TextStyle(fontSize: 30.0,
-                        color: letter_color
-                    )
-                ),
-                new Text("9:00 p.m.",
-                    style: TextStyle(fontSize: 30.0,
-                        color: letter_color
-                    )
-                )
-              ]
-          )
-      )
-  );
-  static Container tec_cqContainer = new Container(
-      decoration: new BoxDecoration(color: back_color),
-      child: new Center(
-          child: new Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                new IconButton(
-                    icon: new Icon(Icons.map, color: icon_color),
-                    iconSize: 70.0,
-                    onPressed: (){
-                      //Navigator.of(context).pushNamed("/Mapa_San_Carlos");
-                    }
-                ),
-                new Text("Cómo llegar",
-                    style: TextStyle(fontSize: 40.0,
-                        color: letter_color
-                    )
-                ),
-                new IconButton(
-                    icon: new Icon(Icons.departure_board, color: icon_color),
-                    iconSize: 70.0,
-                    onPressed: (){
-                      genericContainer = null;
-                      genericContainer = horario_tec_cqContainer;
-                    }
-                ),
-                new Text("Horarios",
-                    style: TextStyle(fontSize: 40.0,
-                        color: letter_color
-                    )
-                )
-
-              ]
-          )
-      )
-  );
 
 
 
   String resultText = "";
 
-  void _onPressed(Container container) {
-    Navigator.of(context).pushNamed("/todos");
-  }
 
   @override
   void initState() {
     super.initState();
     initSpeechRecognizer();
-    genericContainer = containerInicio;
+    //genericContainer = containerInicio;
   }
 
 
@@ -247,7 +99,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                 resultText.contains("elegir")||
                 resultText.contains("campus")||
                 resultText.contains("sede") ){
-                Navigator.of(context).pushNamed("/sancarlos")
+                //Navigator.of(context).pushNamed("/sancarlos")
             }
 
             else if(
@@ -259,7 +111,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                 resultText.contains("san carlos")||
                 resultText.contains("punto de partida")){
                   genericContainer = null,
-                  genericContainer = containerSanCarlos
+                  //genericContainer = containerSanCarlos
                 }
 
             else if(
@@ -280,7 +132,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                       new MaterialPageRoute(
                           builder: (context) => new CQ_TEC()))*/
                   genericContainer = null,
-                  genericContainer = cq_tecContainer
+                  //genericContainer = cq_tecContainer
                 }
 
               else if(
@@ -291,7 +143,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                     resultText.contains("a iudad Quesada"))){
 
                   genericContainer = null,
-                  genericContainer = horario_tec_cqContainer
+                  //genericContainer = horario_tec_cqContainer
               }
 
               else if(
@@ -303,7 +155,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                     ))
                 {
                   genericContainer = null,
-                  genericContainer = horario_cq_tecContainer
+                  //genericContainer = horario_cq_tecContainer
                 }
             /*
               else if(
@@ -342,7 +194,7 @@ class _VoiceHomeState extends State<VoiceHome> {
     switch (index) {
       case 0:
         genericContainer = null;
-        genericContainer = containerInicio;
+        //genericContainer = containerInicio;
         if (_isListening)
           _speechRecognition.cancel().then(
                 (result) => setState(() {
@@ -372,6 +224,210 @@ class _VoiceHomeState extends State<VoiceHome> {
   }
 
 
+  _getDrawerItemWidget(int pos) {
+    switch (pos) {
+      case 0:
+        return new ContainerGen(new Container(
+            decoration: new BoxDecoration(color: back_color),
+            child: new Center(
+                child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      new RaisedButton(
+                          child: new Text("Campus Tecnológico\nLocal San Carlos",
+                              style: TextStyle(fontSize: 30.0,
+                                  color: letter_color
+                              )),
+                          color: button_color,
+                          onPressed: (){
+                            setState(() {
+                              genericContainer = _getDrawerItemWidget(1);
+                            });
+                          }
+                      )
+                    ]
+                )
+            )));
+      case 1:
+        return ContainerGen(new Container(
+            decoration: new BoxDecoration(color: back_color),
+            child: new Center(
+                child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      new Text("Elija su punto de partida",
+                          style: TextStyle(fontSize: 30.0,
+                              color: letter_color
+                          )
+                      ),
+                      new RaisedButton(
+                          child: new Text("TEC",
+                              style: TextStyle(fontSize: 30.0,
+                                  color: letter_color
+                              )),
+                          color: button_color,
+                          onPressed: (){
+                            setState(() {
+                              genericContainer = _getDrawerItemWidget(4);
+                            });
+                          }
+                      ),
+                      new RaisedButton(
+                          child: new Text("Ciudad Quesada",
+                              style: TextStyle(fontSize: 30.0,
+                                  color: letter_color
+                              )),
+                          color: button_color,
+                          onPressed: (){
+                            setState(() {
+                              genericContainer = _getDrawerItemWidget(2);
+                            });
+                          }
+                      ),
+
+                    ]
+                )
+            )
+        ));
+      case 2:
+        return new ContainerGen(Container(
+            decoration: new BoxDecoration(color: back_color),
+            child: new Center(
+                child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      new IconButton(
+                          icon: new Icon(Icons.map, color: icon_color),
+                          iconSize: 70.0,
+                          onPressed: (){
+                            //Navigator.of(context).pushNamed("/Mapa_San_Carlos");
+
+                          }
+                      ),
+                      new Text("Cómo llegar",
+                          style: TextStyle(fontSize: 40.0,
+                              color: letter_color
+                          )
+                      ),
+                      new IconButton(
+                          icon: new Icon(Icons.departure_board, color: icon_color),
+                          iconSize: 70.0,
+                          onPressed: (){
+                            setState(() {
+                              genericContainer = _getDrawerItemWidget(3);
+                            });
+                          }
+                      ),
+                      new Text("Horarios",
+                          style: TextStyle(fontSize: 40.0,
+                              color: letter_color
+                          )
+                      )
+
+                    ]
+                )
+            )
+        ));
+      case 3:
+        return new ContainerGen(Container(
+            decoration: new BoxDecoration(color: back_color),
+            child: new Center(
+              child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new Text("6:20 a.m.",
+                        style: TextStyle(fontSize: 30.0,
+                            color: letter_color
+                        )
+                    ),
+                  ]
+              ),
+            )
+        ));
+      case 4:
+        return new ContainerGen(new Container(
+            decoration: new BoxDecoration(color: back_color),
+            child: new Center(
+                child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      new IconButton(
+                          icon: new Icon(Icons.map, color: icon_color),
+                          iconSize: 70.0,
+                          onPressed: (){
+                            setState(() {
+                              genericContainer = _getDrawerItemWidget(6);
+                            });
+                          }
+                      ),
+                      new Text("Cómo llegar",
+                          style: TextStyle(fontSize: 40.0,
+                              color: letter_color
+                          )
+                      ),
+                      new IconButton(
+                          icon: new Icon(Icons.departure_board, color: icon_color),
+                          iconSize: 70.0,
+                          onPressed: (){
+                            setState(() {
+                              genericContainer = _getDrawerItemWidget(5);
+                            });
+                          }
+                      ),
+                      new Text("Horarios",
+                          style: TextStyle(fontSize: 40.0,
+                              color: letter_color
+                          )
+                      )
+
+                    ]
+                )
+            )
+        ));
+      case 5:
+        return new ContainerGen(new Container(
+            decoration: new BoxDecoration(color: back_color),
+            child: new Center(
+                child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      new Text("12:00 p.m.",
+                          style: TextStyle(fontSize: 30.0,
+                              color: letter_color
+                          )
+                      ),
+                      new Text("4:15 p.m.",
+                          style: TextStyle(fontSize: 30.0,
+                              color: letter_color
+                          )
+                      ),
+                      new Text("9:00 p.m.",
+                          style: TextStyle(fontSize: 30.0,
+                              color: letter_color
+                          )
+                      )
+                    ]
+                )
+            )
+        )
+        );
+      case 6:
+        return new ContainerGen(new Container(
+          constraints: BoxConstraints(maxHeight: 300,),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              color: Color(0xffffffff)
+          ),
+          child: WebView(
+            initialUrl: 'https://flutter.io'
+          ),
+        ),
+        );
+
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -379,7 +435,7 @@ class _VoiceHomeState extends State<VoiceHome> {
         style: TextStyle (color: letter_color),
       ), backgroundColor: bar_color
       ),
-      body: genericContainer,
+      body: genericContainer == null ? _getDrawerItemWidget(0) : genericContainer,
 
       /*Container(
         decoration: new BoxDecoration(color: back_color),
@@ -416,15 +472,15 @@ class _VoiceHomeState extends State<VoiceHome> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.cancel,color: Color.fromARGB(255, 0, 0, 0)),
-              title: new Text('Home')
+              title: new Text('Cancelar | Inicio')
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.mic,color: Color.fromARGB(255, 0, 0, 0)),
-              title: new Text('Power')
+              title: new Text('Micrófono')
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.stop,color: Color.fromARGB(255, 0, 0, 0)),
-              title: new Text('Power')
+              title: new Text('Detener')
           )
         ],
         onTap: (index){
@@ -447,118 +503,21 @@ requestPermission() async {
   print(res);
 }
 
-/*class Horario_TEC_CQ extends StatelessWidget {
+class ContainerGen extends StatelessWidget {
+  Container gen;
+  ContainerGen(Container container) {
+    this.gen = container;
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(title: new Text("Horario buses TEC\na Ciudad Quesada",
+        /*appBar: new AppBar(title: new Text("Horario buses TEC\na Ciudad Quesada",
             style: TextStyle (color: letter_color)
         ),
           backgroundColor: bar_color,
-        ),
-        body: new Container(
-            decoration: new BoxDecoration(color: back_color),
-            child: new Center(
-                child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new Text("12:00 p.m.",
-                          style: TextStyle(fontSize: 30.0,
-                              color: letter_color
-                          )
-                      ),
-                      new Text("4:15 p.m.",
-                          style: TextStyle(fontSize: 30.0,
-                              color: letter_color
-                          )
-                      ),
-                      new Text("9:00 p.m.",
-                          style: TextStyle(fontSize: 30.0,
-                              color: letter_color
-                          )
-                      )
-                    ]
-                )
-            )
-        )
+        ),*/
+        body: this.gen,
     );
   }
-}*/
-
-/*class pantalla_inicio extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(title: new Text("Elija la sede deseada",
-          style: TextStyle (color: letter_color),
-        ), backgroundColor: bar_color
-        ),
-        body: new Container(
-          decoration: new BoxDecoration(color: back_color),
-          child: new Center(
-              child: new Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    new RaisedButton(
-                        child: new Text("Campus Tecnológico\nLocal San Carlos",
-                            style: TextStyle(fontSize: 30.0,
-                                color: letter_color
-                            )),
-                        color: button_color,
-                        onPressed: (){Navigator.push(context, new MaterialPageRoute(builder: (context) =>new San_Carlos())
-                        );
-                        }
-                    )
-                  ]
-              )
-          ),
-        )
-    );
-  }
-}*/
-
-/*class San_Carlos extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(title: new Text("Campus Tecnológico\nLocal San Carlos",
-            style: TextStyle (color: letter_color)
-        ), backgroundColor: bar_color,
-        ),
-        body: new Container(
-            decoration: new BoxDecoration(color: back_color),
-            child: new Center(
-                child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      new Text("Elija su punto de partida",
-                          style: TextStyle(fontSize: 30.0,
-                              color: letter_color
-                          )
-                      ),
-                      new RaisedButton(
-                          child: new Text("TEC",
-                              style: TextStyle(fontSize: 30.0,
-                                  color: letter_color
-                              )),
-                          color: button_color,
-                          onPressed: (){Navigator.of(context).pushNamed("/TEC_CQ");}
-                      ),
-                      new RaisedButton(
-                          child: new Text("Ciudad Quesada",
-                              style: TextStyle(fontSize: 30.0,
-                                  color: letter_color
-                              )),
-                          color: button_color,
-                          onPressed: (){Navigator.of(context).pushNamed("/CQ_TEC");}
-                      ),
-
-                    ]
-                )
-            )
-        )
-    );
-  }
-}*/
+}
 
