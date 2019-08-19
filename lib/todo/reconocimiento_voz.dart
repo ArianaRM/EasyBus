@@ -430,14 +430,7 @@ class _VoiceHomeState extends State<VoiceHome> {
         onTap: (index){
           _incrementTab(index);
         },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: new FloatingActionButton(
-
-        onPressed:(){ _incrementTab(1); },
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-      ),
+      )
     );
 
 
