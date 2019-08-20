@@ -4,7 +4,11 @@ import 'package:speech_recognition/speech_recognition.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:permission/permission.dart';
 
-
+dynamic bar_color = Colors.black;
+dynamic back_color= Colors.black;
+dynamic letter_color= Colors.yellow;
+dynamic icon_color= Colors.yellow;
+dynamic button_color=Colors.black;
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
