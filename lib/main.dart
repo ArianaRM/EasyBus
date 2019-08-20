@@ -109,7 +109,6 @@ class _VoiceHomeState extends State<VoiceHome> {
             resultText.contains("campus") ||
                 resultText.contains("tecnológico")||
                 resultText.contains("tec")||
-                resultText.contains("Tec")||
                 resultText.contains("local")||
                 resultText.contains("san carlos")||
                 resultText.contains("punto de partida")){
@@ -123,14 +122,14 @@ class _VoiceHomeState extends State<VoiceHome> {
                   resultText.contains("tecnológico")||
                   resultText.contains("sede")||
                   resultText.contains("campus")&&
-                  resultText.contains("a ciudad Quesada")){
+                  resultText.contains("a ciudad quesada")){
                   setState(() {
                     genericContainer = _getDrawerItemWidget(4);
                   })
                 }
 
             else if(
-                resultText.contains("iudad") ||
+                resultText.contains("ciudad") ||
                 resultText.contains("quesada") ||
                 resultText.contains("a tec")){
                   setState(() {
@@ -143,7 +142,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                     (
                     resultText.contains("tec")||
                     resultText.contains("tecnológico")||
-                    resultText.contains("a iudad Quesada"))){
+                    resultText.contains("a ciudad quesada"))){
 
                     setState(() {
                       genericContainer = _getDrawerItemWidget(5);
@@ -153,7 +152,7 @@ class _VoiceHomeState extends State<VoiceHome> {
               else if(
                     resultText.contains("horario ") &&
                         (
-                    resultText.contains("iudad Quesada")||
+                    resultText.contains("ciudad quesada")||
                     resultText.contains("a tec")||
                     resultText.contains("a tecnológico")
                     ))
@@ -438,10 +437,12 @@ class _VoiceHomeState extends State<VoiceHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(title: new Text("Elija la sede deseada",
-        style: TextStyle (color: letter_color),
-      ), backgroundColor: bar_color
-      ),
+      appBar: new AppBar(title: new Text
+      ("Elija la sede deseada",
+
+
+        style: TextStyle (color: letter_color)),
+      ), backgroundColor: bar_color,
       body: genericContainer == null ? _getDrawerItemWidget(0) : genericContainer,
 
       /*Container(
