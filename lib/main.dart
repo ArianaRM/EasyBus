@@ -142,7 +142,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                     (
                     resultText.contains("tec")||
                     resultText.contains("tecnológico")||
-                    resultText.contains("a iudad Quesada"))){
+                    resultText.contains("a ciudad quesada"))){
 
                     setState(() {
                       genericContainer = _getDrawerItemWidget(5);
