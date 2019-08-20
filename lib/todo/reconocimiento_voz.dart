@@ -200,8 +200,6 @@ class _VoiceHomeState extends State<VoiceHome> {
     print(index);
     switch (index) {
       case 0:
-        genericContainer = null;
-        //genericContainer = containerInicio;
         if (_isListening)
           _speechRecognition.cancel().then(
                 (result) => setState(() {
