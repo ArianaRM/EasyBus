@@ -41,6 +41,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   bool _isAvailable = false;
   bool _isListening = false;
   int _cIndex = 0;
+  String appBarText = "Elija la sede deseada";
 
   ContainerGen genericContainer;
   static Container containerInicio = new Container(
@@ -253,6 +254,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )));
       case 1: // san carlos
+        setState(() {
+          appBarText = "Sede San Carlos";
+        });
         return ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -294,6 +298,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 2: // CQ-TEC
+        setState(() {
+          appBarText = "CQ-TEC";
+        });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -334,6 +341,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 3: // horario cq - tec
+        setState(() {
+          appBarText = "horario cq - tec";
+        });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -350,6 +360,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 4: // TEC-CQ
+        setState(() {
+          appBarText = "TEC-CQ";
+        });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -390,6 +403,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 5: // horario tec - cq
+        setState(() {
+          appBarText = "horario tec - cq";
+        });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -417,6 +433,9 @@ class _VoiceHomeState extends State<VoiceHome> {
         )
         );
       case 6:
+        setState(() {
+          appBarText = "webview";
+        });
         return new ContainerGen(new Container(
           constraints: BoxConstraints(maxHeight: 300,),
           decoration: BoxDecoration(
@@ -436,7 +455,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(title: new Text("Elija la sede deseada",
+      appBar: new AppBar(title: new Text(this.appBarText,
         style: TextStyle (color: letter_color),
       ), backgroundColor: bar_color
       ),
