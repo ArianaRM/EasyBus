@@ -473,23 +473,30 @@ class _VoiceHomeState extends State<VoiceHome> {
           ],
         ),
       )*/
-      bottomNavigationBar:BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: back_color,
 
 
         currentIndex: _cIndex,
         type: BottomNavigationBarType.fixed ,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.cancel,color: Color.fromARGB(255, 0, 0, 0)),
-              title: new Text('Cancelar | Inicio')
+              icon: Icon(Icons.cancel,color: icon_color, size: 40),
+              title: new Text('Cancelar | Inicio',
+                  style: TextStyle (color: letter_color)
+              )
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.mic,color: Color.fromARGB(255, 0, 0, 0)),
-              title: new Text('Micrófono')
+              icon: Icon(Icons.mic,color: icon_color, size: 40),
+              title: new Text('Micrófono',
+                  style: TextStyle (color: letter_color)
+              )
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.stop,color: Color.fromARGB(255, 0, 0, 0)),
-              title: new Text('Detener')
+              icon: Icon(Icons.stop,color: icon_color, size: 40),
+              title: new Text('Detener',
+                  style: TextStyle (color: letter_color)
+              )
           )
         ],
         onTap: (index){
@@ -520,11 +527,7 @@ class ContainerGen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        /*appBar: new AppBar(title: new Text("Horario buses TEC\na Ciudad Quesada",
-            style: TextStyle (color: letter_color)
-        ),
-          backgroundColor: bar_color,
-        ),*/
+
         body: this.gen,
     );
   }
