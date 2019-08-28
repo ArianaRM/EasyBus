@@ -1,3 +1,4 @@
+//import 'package:EasyBus/todo/webview_mapa.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -43,6 +44,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   bool _isAvailable = false;
   bool _isListening = false;
   int _cIndex = 0;
+  String appBarText = "Elija la sede deseada";
 
   ContainerGen genericContainer;
   static Container containerInicio = new Container(
@@ -108,7 +110,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             else if(
             resultText.contains("campus") ||
                 resultText.contains("tecnológico")||
-                resultText.contains("tec")||
+                resultText.contains("tec")|
                 resultText.contains("local")||
                 resultText.contains("san carlos")||
                 resultText.contains("punto de partida")){
@@ -194,11 +196,8 @@ class _VoiceHomeState extends State<VoiceHome> {
 
 
   void _incrementTab(index) {
-    print(index);
     switch (index) {
       case 0:
-        genericContainer = null;
-        //genericContainer = containerInicio;
         if (_isListening)
           _speechRecognition.cancel().then(
                 (result) => setState(() {
@@ -254,6 +253,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )));
       case 1: // san carlos
+        setState(() {
+          appBarText = "Sede San Carlos";
+        });
         return ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -295,6 +297,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 2: // CQ-TEC
+        setState(() {
+          appBarText = "CQ-TEC";
+        });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -335,6 +340,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 3: // horario cq - tec
+        setState(() {
+          appBarText = "horario cq - tec";
+        });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -351,6 +359,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 4: // TEC-CQ
+        setState(() {
+          appBarText = "TEC-CQ";
+        });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -391,6 +402,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 5: // horario tec - cq
+        setState(() {
+          appBarText = "horario tec - cq";
+        });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -418,6 +432,9 @@ class _VoiceHomeState extends State<VoiceHome> {
         )
         );
       case 6:
+        setState(() {
+          appBarText = "webview";
+        });
         return new ContainerGen(new Container(
           constraints: BoxConstraints(maxHeight: 300,),
           decoration: BoxDecoration(
@@ -437,12 +454,10 @@ class _VoiceHomeState extends State<VoiceHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(title: new Text
-      ("Elija la sede deseada",
-
-
-        style: TextStyle (color: letter_color)),
-      ), backgroundColor: bar_color,
+      appBar: new AppBar(title: new Text(this.appBarText,
+        style: TextStyle (color: letter_color),
+      ), backgroundColor: bar_color
+      ),
       body: genericContainer == null ? _getDrawerItemWidget(0) : genericContainer,
 
       /*Container(
@@ -474,36 +489,36 @@ class _VoiceHomeState extends State<VoiceHome> {
           ],
         ),
       )*/
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: back_color,
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: back_color,
 
 
-        currentIndex: _cIndex,
-        type: BottomNavigationBarType.fixed ,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.cancel,color: icon_color, size: 40),
-              title: new Text('Cancelar | Inicio',
-                  style: TextStyle (color: letter_color)
-              )
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.mic,color: icon_color, size: 40),
-              title: new Text('Micrófono',
-                  style: TextStyle (color: letter_color)
-              )
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.stop,color: icon_color, size: 40),
-              title: new Text('Detener',
-                  style: TextStyle (color: letter_color)
-              )
-          )
-        ],
-        onTap: (index){
-          _incrementTab(index);
-        },
-      )
+          currentIndex: _cIndex,
+          type: BottomNavigationBarType.fixed ,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.cancel,color: icon_color, size: 40),
+                title: new Text('Cancelar | Inicio',
+                    style: TextStyle (color: letter_color)
+                )
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.mic,color: icon_color, size: 40),
+                title: new Text('Micrófono',
+                    style: TextStyle (color: letter_color)
+                )
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.stop,color: icon_color, size: 40),
+                title: new Text('Detener',
+                    style: TextStyle (color: letter_color)
+                )
+            )
+          ],
+          onTap: (index){
+            _incrementTab(index);
+          },
+        )
     );
 
 
@@ -512,7 +527,6 @@ class _VoiceHomeState extends State<VoiceHome> {
 
 
 }
-
 
 
 requestPermission() async {
@@ -528,7 +542,11 @@ class ContainerGen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-
+        /*appBar: new AppBar(title: new Text("Horario buses TEC\na Ciudad Quesada",
+            style: TextStyle (color: letter_color)
+        ),
+          backgroundColor: bar_color,
+        ),*/
         body: this.gen,
     );
   }
