@@ -44,6 +44,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   bool _isListening = false;
   int _cIndex = 0;
   String appBarText = "Elija la sede deseada";
+  dynamic pasa= null;
 
   ContainerGen genericContainer;
   static Container containerInicio = new Container(
@@ -71,6 +72,7 @@ class _VoiceHomeState extends State<VoiceHome> {
 
 
   String resultText = "";
+
 
 
   @override
@@ -252,8 +254,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )));
       case 1: // san carlos
+        pasa= _getDrawerItemWidget(0);
         setState(() {
-          appBarText = "Sede San Carlos";
+          appBarText = "Campus San Carlos";
         });
         return ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -340,7 +343,7 @@ class _VoiceHomeState extends State<VoiceHome> {
         ));
       case 3: // horario cq - tec
         setState(() {
-          appBarText = "horario cq - tec";
+          appBarText = "Horario CQ-TEC";
         });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
@@ -402,7 +405,7 @@ class _VoiceHomeState extends State<VoiceHome> {
         ));
       case 5: // horario tec - cq
         setState(() {
-          appBarText = "horario tec - cq";
+          appBarText = "Horario TEC-CQ";
         });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -431,8 +434,10 @@ class _VoiceHomeState extends State<VoiceHome> {
         )
         );
       case 6:
+        pasa = "_getDrawerItemWidget(5)";
         setState(() {
-          appBarText = "webview";
+          appBarText = "Cómo llegar";
+
         });
         return new ContainerGen(new Container(
           constraints: BoxConstraints(maxHeight: 300,),
@@ -455,39 +460,24 @@ class _VoiceHomeState extends State<VoiceHome> {
     return Scaffold(
       appBar: new AppBar(title: new Text(this.appBarText,
         style: TextStyle (color: letter_color),
-      ), backgroundColor: bar_color
-      ),
+      ), backgroundColor: bar_color,
+          actions: <Widget>[
+          // action button
+          IconButton(
+          icon: Icon(Icons.keyboard_arrow_left, color: icon_color),
+            iconSize: 30.0,
+            onPressed: (){
+            setState(() {
+              genericContainer == this.pasa;
+            }
+            );
+          }
+          )
+            ]
+    ),
       body: genericContainer == null ? _getDrawerItemWidget(0) : genericContainer,
 
-      /*Container(
-        decoration: new BoxDecoration(color: back_color),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              decoration: BoxDecoration(
-                color: back_color,
-                borderRadius: BorderRadius.circular(6.0),
-              ),
-              padding: EdgeInsets.symmetric(
-                vertical: 8.0,
-                horizontal: 14.0,
-              ),
-              child: Text(
-                resultText,
-                style: TextStyle(fontSize: 24.0, color: letter_color),
-              ),
-
-            )
-
-          ],
-        ),
-      )*/
+ 
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: back_color,
 
