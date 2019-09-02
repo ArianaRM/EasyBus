@@ -44,7 +44,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   bool _isListening = false;
   int _cIndex = 0;
   String appBarText = "Elija la sede deseada";
-  dynamic pasa= null;
+  dynamic bar_change= null;
 
   ContainerGen genericContainer;
   static Container containerInicio = new Container(
@@ -231,6 +231,9 @@ class _VoiceHomeState extends State<VoiceHome> {
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0: // inicio
+        setState(() {
+          appBarText = "Elija la sede deseada";
+        });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -254,7 +257,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )));
       case 1: // san carlos
-        pasa= _getDrawerItemWidget(0);
+        bar_change= _getDrawerItemWidget(0);
         setState(() {
           appBarText = "Campus San Carlos";
         });
@@ -299,6 +302,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 2: // CQ-TEC
+        bar_change= _getDrawerItemWidget(1);
         setState(() {
           appBarText = "CQ-TEC";
         });
@@ -342,6 +346,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 3: // horario cq - tec
+        bar_change= _getDrawerItemWidget(2);
         setState(() {
           appBarText = "Horario CQ-TEC";
         });
@@ -361,6 +366,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 4: // TEC-CQ
+        bar_change= _getDrawerItemWidget(1);
         setState(() {
           appBarText = "TEC-CQ";
         });
@@ -404,6 +410,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 5: // horario tec - cq
+        bar_change= _getDrawerItemWidget(4);
         setState(() {
           appBarText = "Horario TEC-CQ";
         });
@@ -434,7 +441,7 @@ class _VoiceHomeState extends State<VoiceHome> {
         )
         );
       case 6:
-        pasa = "_getDrawerItemWidget(5)";
+        bar_change = _getDrawerItemWidget(4);
         setState(() {
           appBarText = "Cómo llegar";
 
@@ -461,23 +468,25 @@ class _VoiceHomeState extends State<VoiceHome> {
       appBar: new AppBar(title: new Text(this.appBarText,
         style: TextStyle (color: letter_color),
       ), backgroundColor: bar_color,
-          actions: <Widget>[
-          // action button
-          IconButton(
-          icon: Icon(Icons.keyboard_arrow_left, color: icon_color),
-            iconSize: 30.0,
-            onPressed: (){
-            setState(() {
-              genericContainer == this.pasa;
-            }
-            );
-          }
-          )
-            ]
+        leading: new Row
+        (
+        children:<Widget>[
+            IconButton(
+                icon: Icon(Icons.arrow_back, color: icon_color),
+                iconSize: 30.0,
+                onPressed: (){
+                  setState(() {
+                    genericContainer = this.bar_change;
+                  }
+                  );
+                }
+            )
+        ],
+        )
     ),
       body: genericContainer == null ? _getDrawerItemWidget(0) : genericContainer,
 
- 
+
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: back_color,
 
