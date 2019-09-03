@@ -1,4 +1,3 @@
-//import 'package:EasyBus/todo/webview_mapa.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -45,6 +44,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   bool _isListening = false;
   int _cIndex = 0;
   String appBarText = "Elija la sede deseada";
+  dynamic bar_change= null;
 
   ContainerGen genericContainer;
   /*static Container containerInicio = new Container(
@@ -72,6 +72,7 @@ class _VoiceHomeState extends State<VoiceHome> {
 
 
   String resultText = "";
+
 
 
   @override
@@ -233,6 +234,9 @@ class _VoiceHomeState extends State<VoiceHome> {
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0: // inicio
+        setState(() {
+          appBarText = "Elija la sede deseada";
+        });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
             child: new Center(
@@ -256,8 +260,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )));
       case 1: // san carlos
+        bar_change= _getDrawerItemWidget(0);
         setState(() {
-          appBarText = "Sede San Carlos";
+          appBarText = "Campus San Carlos";
         });
         return ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -300,6 +305,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 2: // CQ-TEC
+        bar_change= _getDrawerItemWidget(1);
         setState(() {
           appBarText = "CQ-TEC";
         });
@@ -343,8 +349,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 3: // horario cq - tec
+        bar_change= _getDrawerItemWidget(2);
         setState(() {
-          appBarText = "horario cq - tec";
+          appBarText = "Horario CQ-TEC";
         });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
@@ -362,6 +369,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 4: // TEC-CQ
+        bar_change= _getDrawerItemWidget(1);
         setState(() {
           appBarText = "TEC-CQ";
         });
@@ -405,8 +413,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 5: // horario tec - cq
+        bar_change= _getDrawerItemWidget(4);
         setState(() {
-          appBarText = "horario tec - cq";
+          appBarText = "Horario TEC-CQ";
         });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -435,8 +444,10 @@ class _VoiceHomeState extends State<VoiceHome> {
         )
         );
       case 6:
+        bar_change = _getDrawerItemWidget(4);
         setState(() {
-          appBarText = "webview";
+          appBarText = "Cómo llegar";
+
         });
         return new ContainerGen(new Container(
           constraints: BoxConstraints(maxHeight: 300,),
@@ -459,10 +470,24 @@ class _VoiceHomeState extends State<VoiceHome> {
     return Scaffold(
       appBar: new AppBar(title: new Text(this.appBarText,
         style: TextStyle (color: letter_color),
-      ), backgroundColor: bar_color
-      ),
+      ), backgroundColor: bar_color,
+        leading: new Row
+        (
+        children:<Widget>[
+            IconButton(
+                icon: Icon(Icons.arrow_back, color: icon_color),
+                iconSize: 30.0,
+                onPressed: (){
+                  setState(() {
+                    genericContainer = this.bar_change;
+                  }
+                  );
+                }
+            )
+        ],
+        )
+    ),
       body: genericContainer == null ? _getDrawerItemWidget(0) : genericContainer,
-
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: back_color,
 
@@ -490,7 +515,6 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
           ],
           onTap: (index){
-            print("INDEX: "+ index.toString());
             _incrementTab(index);
           },
         )
