@@ -47,7 +47,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   String appBarText = "Elija la sede deseada";
 
   ContainerGen genericContainer;
-  static Container containerInicio = new Container(
+  /*static Container containerInicio = new Container(
       decoration: new BoxDecoration(color: back_color),
       child: new Center(
           child: new Column(
@@ -61,13 +61,13 @@ class _VoiceHomeState extends State<VoiceHome> {
                         )),
                     color: button_color,
                     onPressed: (){
-                      /*genericContainer = null;
-                      genericContainer = containerSanCarlos;*/
+                      *//*genericContainer = null;
+                      genericContainer = containerSanCarlos;*//*
                     }
                 )
               ]
           )
-      ));
+      ));*/
 
 
 
@@ -198,7 +198,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   void _incrementTab(index) {
     switch (index) {
       case 0:
-        if (_isListening)
+        if (_isListening){
           _speechRecognition.cancel().then(
                 (result) => setState(() {
               _isListening = result;
@@ -206,6 +206,9 @@ class _VoiceHomeState extends State<VoiceHome> {
               print(resultText="");
             }),
           );
+
+        }
+
         break;
       case 1:
         if (_isAvailable && !_isListening)
@@ -460,35 +463,6 @@ class _VoiceHomeState extends State<VoiceHome> {
       ),
       body: genericContainer == null ? _getDrawerItemWidget(0) : genericContainer,
 
-      /*Container(
-        decoration: new BoxDecoration(color: back_color),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              decoration: BoxDecoration(
-                color: back_color,
-                borderRadius: BorderRadius.circular(6.0),
-              ),
-              padding: EdgeInsets.symmetric(
-                vertical: 8.0,
-                horizontal: 14.0,
-              ),
-              child: Text(
-                resultText,
-                style: TextStyle(fontSize: 24.0, color: letter_color),
-              ),
-
-            )
-
-          ],
-        ),
-      )*/
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: back_color,
 
@@ -516,6 +490,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
           ],
           onTap: (index){
+            print("INDEX: "+ index.toString());
             _incrementTab(index);
           },
         )

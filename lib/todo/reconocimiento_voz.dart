@@ -197,7 +197,6 @@ class _VoiceHomeState extends State<VoiceHome> {
 
 
   void _incrementTab(index) {
-    print(index);
     switch (index) {
       case 0:
         if (_isListening)
@@ -208,6 +207,9 @@ class _VoiceHomeState extends State<VoiceHome> {
               print(resultText="");
             }),
           );
+        setState(() {
+          genericContainer = _getDrawerItemWidget(0);
+        });
         break;
       case 1:
         if (_isAvailable && !_isListening)
