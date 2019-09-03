@@ -16,16 +16,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: VoiceHome(),
-//        routes:<String, WidgetBuilder>{
-//          "/Estudiantes":(BuildContext context)  => new San_Carlos(),
-//          "/sancarlos":(BuildContext context)  => new San_Carlos(),
-//          "/TEC_CQ":(BuildContext context)  => new TEC_CQ(),
-//          "/CQ_TEC":(BuildContext context)  => new CQ_TEC(),
-//          //"/Mapa_San_Carlos":(BuildContext context)  => new Mapa_San_Carlos(),
-//          "/Horario_TEC_CQ":(BuildContext context)  => new Horario_TEC_CQ(),
-//          "/Horario_CQ_TEC":(BuildContext context)  => new Horario_CQ_TEC(),
-//
-//        }
     );
   }
 }
@@ -47,27 +37,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   dynamic bar_change= null;
 
   ContainerGen genericContainer;
-  /*static Container containerInicio = new Container(
-      decoration: new BoxDecoration(color: back_color),
-      child: new Center(
-          child: new Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                new RaisedButton(
-                    child: new Text("Campus Tecnológico\nLocal San Carlos",
-                        style: TextStyle(fontSize: 30.0,
-                            color: letter_color
-                        )),
-                    color: button_color,
-                    onPressed: (){
-                      *//*genericContainer = null;
-                      genericContainer = containerSanCarlos;*//*
-                    }
-                )
-              ]
-          )
-      ));*/
+
 
 
 
@@ -164,19 +134,7 @@ class _VoiceHomeState extends State<VoiceHome> {
                     genericContainer = _getDrawerItemWidget(3);
                   }),
                 }
-            /*
-              else if(
-                      speech.contains("Horario") &&
-                          (
-                              speech.contains("Ciudad Quesada")||
-                              speech.contains("a TEC")||
-                              speech.contains("a Tecnológico")
-                          )){
-                Navigator.push(context,
-                    new MaterialPageRoute(
-                        builder: (context) => new Mapa_San_Carlos()))
-              }
-              */
+
 
               }
 
@@ -541,11 +499,7 @@ class ContainerGen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        /*appBar: new AppBar(title: new Text("Horario buses TEC\na Ciudad Quesada",
-            style: TextStyle (color: letter_color)
-        ),
-          backgroundColor: bar_color,
-        ),*/
+       
         body: this.gen,
     );
   }
