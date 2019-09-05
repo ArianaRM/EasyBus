@@ -34,7 +34,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   bool _isListening = false;
   int _cIndex = 0;
   String appBarText = "Elija la sede deseada";
-  dynamic bar_change= null;
+  dynamic bar_change= 0;
 
   ContainerGen genericContainer;
 
@@ -165,9 +165,10 @@ class _VoiceHomeState extends State<VoiceHome> {
               print(resultText="");
             }),
           );
-
+          setState(() {
+            genericContainer= _getDrawerItemWidget(0);
+          });
         }
-
         break;
       case 1:
         if (_isAvailable && !_isListening)
@@ -221,7 +222,7 @@ class _VoiceHomeState extends State<VoiceHome> {
 
         setState(() {
           appBarText = "Campus San Carlos";
-          bar_change= {_getDrawerItemWidget(1), appBarText = "Elija la sede deseada"};
+          bar_change= {_getDrawerItemWidget(0), appBarText = "Elija la sede deseada"};
         });
         return ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -264,9 +265,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 2: // CQ-TEC
-        bar_change= {_getDrawerItemWidget(1)};
+        bar_change= {_getDrawerItemWidget(1), appBarText = "Sede San Carlos"};
         setState(() {
-          appBarText = "CQ-TEC";
+          appBarText = "Ciudad Quesada-TEC";
         });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
