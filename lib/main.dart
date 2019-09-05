@@ -218,9 +218,10 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )));
       case 1: // san carlos
-        bar_change= _getDrawerItemWidget(0);
+
         setState(() {
           appBarText = "Campus San Carlos";
+          bar_change= {_getDrawerItemWidget(1), appBarText = "Elija la sede deseada"};
         });
         return ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -263,7 +264,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 2: // CQ-TEC
-        bar_change= _getDrawerItemWidget(1);
+        bar_change= {_getDrawerItemWidget(1)};
         setState(() {
           appBarText = "CQ-TEC";
         });
@@ -499,7 +500,7 @@ class ContainerGen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-       
+
         body: this.gen,
     );
   }
