@@ -34,7 +34,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   bool _isListening = false;
   int _cIndex = 0;
   String appBarText = "Elija la sede deseada";
-  dynamic bar_change= 0;
+  dynamic bar_change= null;
 
   ContainerGen genericContainer;
 
@@ -157,7 +157,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   void _incrementTab(index) {
     switch (index) {
       case 0:
-        if (_isListening){
+        if (_isListening)
           _speechRecognition.cancel().then(
                 (result) => setState(() {
               _isListening = result;
@@ -168,7 +168,6 @@ class _VoiceHomeState extends State<VoiceHome> {
           setState(() {
             genericContainer= _getDrawerItemWidget(0);
           });
-        }
         break;
       case 1:
         if (_isAvailable && !_isListening)
@@ -219,10 +218,10 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )));
       case 1: // san carlos
-
+        bar_change= {_getDrawerItemWidget(0)};
         setState(() {
           appBarText = "Campus San Carlos";
-          bar_change= {_getDrawerItemWidget(0), appBarText = "Elija la sede deseada"};
+
         });
         return ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -265,9 +264,10 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 2: // CQ-TEC
-        bar_change= {_getDrawerItemWidget(1), appBarText = "Sede San Carlos"};
+        bar_change= {_getDrawerItemWidget(1)};
         setState(() {
           appBarText = "Ciudad Quesada-TEC";
+
         });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
@@ -312,6 +312,7 @@ class _VoiceHomeState extends State<VoiceHome> {
         bar_change= _getDrawerItemWidget(2);
         setState(() {
           appBarText = "Horario CQ-TEC";
+
         });
         return new ContainerGen(Container(
             decoration: new BoxDecoration(color: back_color),
@@ -332,6 +333,7 @@ class _VoiceHomeState extends State<VoiceHome> {
         bar_change= _getDrawerItemWidget(1);
         setState(() {
           appBarText = "TEC-CQ";
+
         });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -405,8 +407,10 @@ class _VoiceHomeState extends State<VoiceHome> {
         );
       case 6:
         bar_change = _getDrawerItemWidget(4);
+
         setState(() {
           appBarText = "Cómo llegar";
+
 
         });
         return new ContainerGen(new Container(
@@ -470,8 +474,7 @@ class _VoiceHomeState extends State<VoiceHome> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.stop,color: icon_color, size: 40),
                 title: new Text('Detener',
-                    style: TextStyle (color: letter_color)
-                )
+                    style: TextStyle (color: letter_color))
             )
           ],
           onTap: (index){
