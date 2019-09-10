@@ -34,7 +34,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   bool _isListening = false;
   int _cIndex = 0;
   String appBarText = "Elija la sede deseada";
-  dynamic bar_change= null;
+  int actual_screen = 0;
 
   ContainerGen genericContainer;
 
@@ -218,9 +218,9 @@ class _VoiceHomeState extends State<VoiceHome> {
                 )
             )));
       case 1: // san carlos
-        bar_change= {_getDrawerItemWidget(0)};
-        setState(() {
-          appBarText = "Campus San Carlos";
+        this.actual_screen = 0;
+        setState(() => {
+          appBarText = "Campus San Carlos"
 
         });
         return ContainerGen(new Container(
@@ -264,9 +264,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 2: // CQ-TEC
-        bar_change= {_getDrawerItemWidget(1)};
-        setState(() {
-          appBarText = "Ciudad Quesada-TEC";
+        this.actual_screen = 1;
+        setState(() => {
+          appBarText = "Ciudad Quesada-TEC"
 
         });
         return new ContainerGen(Container(
@@ -309,9 +309,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 3: // horario cq - tec
-        bar_change= _getDrawerItemWidget(2);
-        setState(() {
-          appBarText = "Horario CQ-TEC";
+        this.actual_screen = 2;
+        setState(() => {
+          appBarText = "Horario CQ-TEC"
 
         });
         return new ContainerGen(Container(
@@ -330,9 +330,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 4: // TEC-CQ
-        bar_change= _getDrawerItemWidget(1);
-        setState(() {
-          appBarText = "TEC-CQ";
+        this.actual_screen = 3;
+        setState(() => {
+          appBarText = "TEC-CQ"
 
         });
         return new ContainerGen(new Container(
@@ -375,9 +375,9 @@ class _VoiceHomeState extends State<VoiceHome> {
             )
         ));
       case 5: // horario tec - cq
-        bar_change= _getDrawerItemWidget(4);
-        setState(() {
-          appBarText = "Horario TEC-CQ";
+        this.actual_screen = 4;
+        setState(() => {
+          appBarText = "Horario TEC-CQ"
         });
         return new ContainerGen(new Container(
             decoration: new BoxDecoration(color: back_color),
@@ -406,12 +406,10 @@ class _VoiceHomeState extends State<VoiceHome> {
         )
         );
       case 6:
-        bar_change = _getDrawerItemWidget(4);
 
+        this.actual_screen = 5;
         setState(() {
           appBarText = "Cómo llegar";
-
-
         });
         return new ContainerGen(new Container(
           constraints: BoxConstraints(maxHeight: 300,),
@@ -442,10 +440,49 @@ class _VoiceHomeState extends State<VoiceHome> {
                 icon: Icon(Icons.arrow_back, color: icon_color),
                 iconSize: 30.0,
                 onPressed: (){
-                  setState(() {
-                    genericContainer = this.bar_change;
+                  switch(this.actual_screen) {
+                    case 0:
+                      setState(() => {
+                        genericContainer = _getDrawerItemWidget(0)
+                      });
+                      break;
+                    case 1:
+                      setState(() => {
+                        genericContainer = _getDrawerItemWidget(1)
+                      });
+                      this.actual_screen = 0;
+                      break;
+                    case 2:
+                      setState(() => {
+                        genericContainer = _getDrawerItemWidget(2)
+                      });
+                      this.actual_screen = 1;
+                      break;
+                    case 3:
+                      setState(() => {
+                        genericContainer = _getDrawerItemWidget(3)
+                      });
+                      this.actual_screen = 2;
+                      break;
+                    case 4:
+                      setState(() => {
+                        genericContainer = _getDrawerItemWidget(4)
+                      });
+                      this.actual_screen = 3;
+                      break;
+                    case 5:
+                      setState(() => {
+                        genericContainer = _getDrawerItemWidget(5)
+                      });
+                      this.actual_screen = 4;
+                      break;
+                    case 6:
+                      setState(() => {
+                        genericContainer = _getDrawerItemWidget(6)
+                      });
+                      this.actual_screen = 5;
+                      break;
                   }
-                  );
                 }
             )
         ],
